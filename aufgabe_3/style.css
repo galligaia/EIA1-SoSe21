@@ -1,0 +1,213 @@
+h1 {
+    font-size: 195px;
+    color: white;
+    font-family: sans-serif;
+    letter-spacing: -21px;
+    margin: 0px;
+}
+
+
+h2 {
+    color: white;
+    font-family: sans-serif;
+    font-size: 50px;
+    margin: 0px;
+
+
+}
+h3 {
+    color: indianred;
+    font-family: sans-serif;
+    text-align: left;
+    font-size: 30px;
+    margin: 0px;
+}
+
+
+p {
+    font-size: 12px;
+    color: white;
+    margin: 0px;
+    margin-top: 5px;
+    font-family: sans-serif;
+}
+
+.formtext p {
+    color: gray;
+    font-family: sans-serif;
+    text-align: left;
+}
+
+
+
+body {
+    text-align: center;
+    background-image: url("bg.png");
+    background-repeat: repeat;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    }
+
+
+.header {
+    background-color: indianred;
+    height: 400px;
+    border-bottom-right-radius: 400px;
+    border-bottom-left-radius: 400px;
+    position: relative;
+    margin-bottom: 180px;
+
+
+}   
+
+.text {
+    position: absolute;
+    max-width: 380px;
+    right: 0px;
+    text-align: left;
+    top: 182px;
+    padding-right: 100px;
+    
+
+
+}
+
+img {
+    width: 800px;
+}
+
+
+video {
+    width: 800px;
+}
+
+        
+        
+ul {
+    position: fixed;
+    top: 0;
+    right: 8px;
+    margin: 0%;
+    padding: 0%;
+    background-color: black;
+    border-radius: 5px;
+}
+
+
+
+li {
+    display: inline;
+    float: right;
+    padding: 2px;
+    text-align: center;
+    
+
+}
+nav li a{
+    color: white;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    display: block;
+    font-size: 20px;
+    }
+
+nav li a:hover {
+    color: indianred;
+}
+
+.active {
+    color: indianred;
+  } 
+
+.text img {
+    max-width: 20px;
+    height: auto;
+}
+
+.text img:hover {
+    border: 3px solid black;
+}
+
+
+input {
+    background-color: lightgray;
+    color: white;
+    font-family: sans-serif;
+    border: lightgray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+    padding: 8px;
+
+}
+
+input:last-of-type {
+    height: 30px;
+    width: 300px;
+
+
+}
+::placeholder {
+    color: white;
+    font-family: sans-serif;
+}
+
+form {
+   
+    font-family: sans-serif;
+
+
+}
+
+.zurueck a {
+    font-family: sans-serif;
+    color: gray;
+    position: fixed;
+    bottom: 30px;
+    
+}
+
+.formtext a {
+    color: gray;
+
+}
+
+form button {
+
+    float: left;
+    background-color: lightgray;
+    color: white;
+    font-family: sans-serif;
+    border: lightgray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+    padding: 8px;
+}
+
+.aboutme-content {
+    margin-top: 300px;
+    display: flex;
+
+}
+.about h2 {
+    color: indianred;
+
+}
+
+.zweite p {
+    color: black;
+    font-size: 15px;
+    font-family: sans-serif;
+    margin-bottom: 18px;
+    
+    
+
+}
+
+.zweite {
+    padding-left: 10%;
+    text-align: left;
+}
