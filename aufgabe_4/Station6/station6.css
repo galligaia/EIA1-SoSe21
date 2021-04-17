@@ -1,0 +1,67 @@
+body {
+    background-image: url("bg.png");
+    background-repeat: repeat;
+    width: 100%;
+    z-index: 1;
+    }
+
+.rechteck {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+
+h1 {
+    font-style: normal;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    position: absolute;
+    top: 27%;
+    left: 420px;
+    margin:0px;
+    z-index: 6;
+
+}
+
+p {
+    font-style: normal;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    position: absolute;
+    top: 44%;
+    left: 420px;
+    margin:0px;
+    z-index: 5;
+}
+
+.baum {
+    position: absolute;
+    top: 23%;
+    left: 52%;
+    z-index: 4;
+}
+
+.muschel1 {
+    position: absolute;
+    top: 33%;
+    left: 450px;
+    z-index: 5;
+}
+
+.muschel2 {
+    position: absolute;
+    top: 65%;
+    left: 550px;
+    z-index: 5;
+}
+
+.muschel3 {
+    position: absolute;
+    top: 28%;
+    left: 800px;
+    z-index: 5;
+
+}

@@ -1,0 +1,31 @@
+body {
+    background-image: url("bg.png");
+    background-repeat: repeat;
+    width: 100%;
+    z-index: 1;
+    }
+
+.rechteck {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.banderole {
+    position: absolute;
+    top: 61%;
+    left: 55%;
+    z-index: 6;
+}
+
+iframe {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    z-index: 5;
+}
