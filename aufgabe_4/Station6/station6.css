@@ -19,8 +19,8 @@ h1 {
     color: white;
     font-family: 'Times New Roman', Times, serif;
     position: absolute;
-    top: 27%;
-    left: 420px;
+    top: 15%;
+    left: 60px;
     margin:0px;
     z-index: 6;
 
@@ -32,36 +32,36 @@ p {
     font-family: 'Times New Roman', Times, serif;
     position: absolute;
     top: 44%;
-    left: 420px;
+    left: 60px;
     margin:0px;
     z-index: 5;
 }
 
 .baum {
     position: absolute;
-    top: 23%;
-    left: 52%;
+    top: 6%;
+    left: 54%;
     z-index: 4;
 }
 
 .muschel1 {
     position: absolute;
-    top: 33%;
-    left: 450px;
+    top: 25%;
+    left: 100px;
     z-index: 5;
 }
 
 .muschel2 {
     position: absolute;
-    top: 65%;
-    left: 550px;
+    top: 74%;
+    left: 250px;
     z-index: 5;
 }
 
 .muschel3 {
     position: absolute;
-    top: 28%;
-    left: 800px;
+    top: 14%;
+    left: 440px;
     z-index: 5;
 
 }
