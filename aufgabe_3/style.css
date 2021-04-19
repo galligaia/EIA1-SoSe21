@@ -92,6 +92,9 @@ ul {
     padding: 0%;
     background-color: black;
     border-radius: 5px;
+    right: 330px;
+    
+    
 }
 
 
@@ -101,9 +104,12 @@ li {
     float: right;
     padding: 2px;
     text-align: center;
+    right: 330px;
     
 
 }
+
+
 nav li a{
     color: white;
     text-decoration: none;
