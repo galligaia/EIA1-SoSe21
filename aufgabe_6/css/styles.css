@@ -58,6 +58,7 @@ footer p {
 .northamerica:hover
  {
     opacity: 100%;
+    cursor: pointer;
 }
 
 .zurueck a {
