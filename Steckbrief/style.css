@@ -1,0 +1,49 @@
+body {
+	font-family: arial;
+	font-size: small;
+	background-color: teal;
+}
+
+a {
+    color: teal;
+    text-decoration: none;
+    text-align: center;
+       
+}
+
+a:hover{
+    color: whitesmoke;
+}
+
+.links {
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgb(255, 255, 255);
+    line-height: 25px;
+    text-align: center;
+    width: 150px;
+    height: 25px;
+}
+
+.links:hover {
+    background-color: rgb(11, 37, 37);
+    font-style: oblique;
+}
+
+.flowchart {
+    border-radius: 20px;
+    margin-top: -25px;
+    margin-bottom: 5px;
+    background-color: rgb(255, 255, 255);
+    line-height: 25px;
+    text-align: center;
+    width: 150px;
+    height: 25px;
+    margin-left: 170px;
+}
+
+.flowchart:hover {
+    background-color: rgb(11, 37, 37);
+    font-style: oblique;
+}
