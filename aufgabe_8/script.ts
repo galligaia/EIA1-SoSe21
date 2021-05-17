@@ -69,9 +69,9 @@ namespace Aufgabe_8 {
   }
   
   function MixBeat(): void {
-      sequence.length = 0;
+      sequence.length = 9;
       for (var i: number = 0; i < 3; i++) {
-          const index: number = Math.floor(Math.random() * 8);
+          const index: number = Math.floor(Math.random() * 9);
           console.log(index);
           playSample (mp3 [index] ); 
           console.log("Remix beat");
