@@ -62,9 +62,9 @@ var Aufgabe_8;
         console.log("Recording beat");
     }
     function MixBeat() {
-        sequence.length = 0;
+        sequence.length = 9;
         for (var i = 0; i < 3; i++) {
-            var index_1 = Math.floor(Math.random() * 8);
+            var index_1 = Math.floor(Math.random() * 9);
             console.log(index_1);
             playSample(mp3[index_1]);
             console.log("Remix beat");
