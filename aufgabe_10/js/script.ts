@@ -1,128 +1,127 @@
-interface newtodo {
-    tasks: string[];
-    status: boolean[];
-}
-var todos: newtodo = {
-
-    tasks: ["Lorem", "Ipsum", "Dolor"],
-    status: [true, false, false]
-};
-
-
-var inputDOMElement: HTMLInputElement;
-var addButtonDOMElement: HTMLElement;
-var todosDOMElement: HTMLElement;
-var counterDOMElement: HTMLElement;
-
-var openDOMElement: HTMLElement;
-var doneDOMElement: HTMLElement;
-var listenDOMElement: HTMLElement;
-
-window.addEventListener("load", function (): void {
-
-
-    inputDOMElement = document.querySelector("#inputTodo");
-    addButtonDOMElement = document.querySelector("#addButton");
-    todosDOMElement = document.querySelector("#todos");
-    counterDOMElement = document.querySelector("#counter");
-    
-    openDOMElement = document.querySelector("#open");
-    doneDOMElement = document.querySelector("#done");
-    listenDOMElement = document.querySelector("button");
-   
-    addButtonDOMElement.addEventListener("click", addTodo);
-    listenDOMElement.addEventListener("click", listen);
-
-    
-    drawListToDOM();
-});
-
-function drawListToDOM(): void {
-    todosDOMElement.innerHTML = "";
-
-    for (let index: number = 0; index < todos.tasks.length; index++) {
-
-        
-        let todo: HTMLElement = document.createElement("div");
-        todo.classList.add("todo");
-
-       
-        todo.innerHTML = "<span class='check " + todos.status[index] + "'><i class='fas fa-check'></i></span>"
-            + todos.tasks[index] +
-            "<span class='trash fas fa-trash-alt'></span>";
-
-        todo.querySelector(".check").addEventListener("click", function (): void {
-            
-            toggleCheckState(index);
-        });
-        todo.querySelector(".trash").addEventListener("click", function (): void {
-            
-            deleteTodo(index);
-        });
-
-        todosDOMElement.appendChild(todo);
-        todosDOMElement.insertBefore(todo, todosDOMElement.childNodes[0]);
-    }
-
-    updateCounter();
-}
-
-function updateCounter(): void {
-    var open: number = 0;
-    var done: number = 0;
-    for (var i: number = 0; i < todos.status.length; i++) {
-        if (todos.status[i] == true) {
-            done++;
+namespace aufgabe10 {
+    var newArray = [
+        {
+            content: "Einkaufen",
+            checked: false
+        },
+        {
+            content: "Kochen",
+            checked: false
+        },
+        {
+            content: "Pflanzen gießen",
+            checked: true
         }
-        else {
-            todos.status[i] != true;
-            open++;
+    ];
+    window.addEventListener("click", function () {
+        var artyom = new Artyom();
+        function startContinuousArtyom() {
+            artyom.fatality();
+            setTimeout(function () {
+                artyom.initialize({
+                    lang: "de-DE",
+                    continuous: true,
+                    listen: true,
+                    interimResults: true,
+                    debug: true
+                }).then(function () {
+                    console.log("Ready!");
+                });
+            }, 250);
+        }
+        startContinuousArtyom();
+        artyom.addCommands({
+            indexes: ["erstelle Aufgabe *"],
+            smart: true,
+            action: function (i, wildcard) {
+                newArray.unshift({
+                    content: wildcard,
+                    checked: false
+                });
+                drawListToDOM();
+                console.log("Neue Aufgabe wird erstellt: " + wildcard);
+            }
+        });
+        document.querySelector("#button").addEventListener("click", function () {
+            artyom.say("Spracheingabe ist aktiviert");
+            startContinuousArtyom();
+        });
+    });
+    var inputDOMElement;
+    var addButtonDOMElement;
+    var todosDOMElement;
+    var counterDOMElement;
+    var doneDOMElement;
+    var openDOMElement;
+
+    window.addEventListener("load", function (): void {
+        inputDOMElement = document.querySelector("#inputTodo");
+        addButtonDOMElement = document.querySelector("#addButton");
+        todosDOMElement = document.querySelector("#todos");
+        counterDOMElement = document.querySelector("#counter");
+        doneDOMElement = document.querySelector("#done");
+        openDOMElement = document.querySelector("#open");
+        addButtonDOMElement.addEventListener("click", addTodo);
+        drawListToDOM();
+    });
+    function drawListToDOM() {
+        todosDOMElement.innerHTML = "";
+        var _loop_1 = function (index_1) {
+            var todo = document.createElement("div");
+            todo.classList.add("todo");
+            todo.innerHTML = "<span class='check " + newArray[index_1].checked + "'><i class='fas fa-check'></i></span>"
+                + newArray[index_1].content +
+                "<span class='trash fas fa-trash-alt'></span>";
+            todo.querySelector(".check").addEventListener("click", function () {
+                toggleCheckState(index_1);
+            });
+            todo.querySelector(".trash").addEventListener("click", function () {
+                deleteTodo(index_1);
+            });
+            todosDOMElement.appendChild(todo);
+        };
+        for (var index_1 = 0; index_1 < newArray.length; index_1++) {
+            _loop_1(index_1);
+        }
+        updateCounter();
+        taskDone();
+        taskOpen();
+    }
+    function updateCounter(): void {
+        counterDOMElement.innerHTML = newArray.length + " in total";
+    }
+    function taskDone(): void {
+        var done = 0;
+        for (var index = 0; index < newArray.length; index++) {
+            if (newArray[index].checked == true)
+                done++;
+        }
+        doneDOMElement.innerHTML = done + " done";
+    }
+    function taskOpen(): void {
+        var open = 0;
+        for (var index = 0; index < newArray.length; index++) {
+            if (newArray[index].checked == false)
+                open++;
+        }
+        openDOMElement.innerHTML = open + " open";
+    }
+    function addTodo(): void {
+        if (inputDOMElement.value != "") {
+            newArray.unshift({
+                content: inputDOMElement.value,
+                checked: false
+            });
+            inputDOMElement.value = "";
+            drawListToDOM();
         }
     }
-    counterDOMElement.innerHTML = todos.tasks.length + " in total | " + open + " open | " + done + " done";
-
-}
-
-
-function addTodo(): void {
-    
-    if (inputDOMElement.value != "") {
-        
-        todos.tasks.push(inputDOMElement.value);
-        todos.status.push(false);
-
-        
-        inputDOMElement.value = "";
-
-        
+    function toggleCheckState(index): void {
+        newArray[index].checked = !newArray[index].checked;
+        drawListToDOM();
+    }
+    function deleteTodo(index): void {
+        newArray.splice(index, 1);
         drawListToDOM();
     }
 }
-
-
-function toggleCheckState(index: number): void {
-
-   
-    todos.status[index] = !todos.status[index];
-
-   
-    drawListToDOM();
-}
-
-
-function deleteTodo(index: number): void {
- 
-    todos.tasks.splice(index, 1);
-    todos.status.splice(index, 1);
-
-    
-    drawListToDOM();
-}
-
-function listen (): void {
-    Artyom.initialize({
-        lang: "de-DE",
-        continuous: false,
-        debug: true,
-        listen: true
-    }); }

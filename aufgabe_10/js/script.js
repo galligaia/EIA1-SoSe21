@@ -1,85 +1,128 @@
-var todos = {
-    tasks: ["Lorem", "Ipsum", "Dolor"],
-    status: [true, false, false]
-};
-var inputDOMElement;
-var addButtonDOMElement;
-var todosDOMElement;
-var counterDOMElement;
-var openDOMElement;
-var doneDOMElement;
-var listenDOMElement;
-window.addEventListener("load", function () {
-    inputDOMElement = document.querySelector("#inputTodo");
-    addButtonDOMElement = document.querySelector("#addButton");
-    todosDOMElement = document.querySelector("#todos");
-    counterDOMElement = document.querySelector("#counter");
-    openDOMElement = document.querySelector("#open");
-    doneDOMElement = document.querySelector("#done");
-    listenDOMElement = document.querySelector("button");
-    addButtonDOMElement.addEventListener("click", addTodo);
-    listenDOMElement.addEventListener("click", listen);
-    drawListToDOM();
-});
-function drawListToDOM() {
-    todosDOMElement.innerHTML = "";
-    var _loop_1 = function (index_1) {
-        var todo = document.createElement("div");
-        todo.classList.add("todo");
-        todo.innerHTML = "<span class='check " + todos.status[index_1] + "'><i class='fas fa-check'></i></span>"
-            + todos.tasks[index_1] +
-            "<span class='trash fas fa-trash-alt'></span>";
-        todo.querySelector(".check").addEventListener("click", function () {
-            toggleCheckState(index_1);
-        });
-        todo.querySelector(".trash").addEventListener("click", function () {
-            deleteTodo(index_1);
-        });
-        todosDOMElement.appendChild(todo);
-        todosDOMElement.insertBefore(todo, todosDOMElement.childNodes[0]);
-    };
-    for (var index_1 = 0; index_1 < todos.tasks.length; index_1++) {
-        _loop_1(index_1);
-    }
-    updateCounter();
-}
-function updateCounter() {
-    var open = 0;
-    var done = 0;
-    for (var i = 0; i < todos.status.length; i++) {
-        if (todos.status[i] == true) {
-            done++;
+var aufgabe10;
+(function (aufgabe10) {
+    var newArray = [
+        {
+            content: "Einkaufen",
+            checked: false
+        },
+        {
+            content: "Kochen",
+            checked: false
+        },
+        {
+            content: "Pflanzen gießen",
+            checked: true
         }
-        else {
-            todos.status[i] != true;
-            open++;
+    ];
+    window.addEventListener("click", function () {
+        var artyom = new Artyom();
+        function startContinuousArtyom() {
+            artyom.fatality();
+            setTimeout(function () {
+                artyom.initialize({
+                    lang: "de-DE",
+                    continuous: true,
+                    listen: true,
+                    interimResults: true,
+                    debug: true
+                }).then(function () {
+                    console.log("Ready!");
+                });
+            }, 250);
+        }
+        startContinuousArtyom();
+        artyom.addCommands({
+            indexes: ["erstelle Aufgabe *"],
+            smart: true,
+            action: function (i, wildcard) {
+                newArray.unshift({
+                    content: wildcard,
+                    checked: false
+                });
+                drawListToDOM();
+                console.log("Neue Aufgabe wird erstellt: " + wildcard);
+            }
+        });
+        document.querySelector("#button").addEventListener("click", function () {
+            artyom.say("Spracheingabe ist aktiviert");
+            startContinuousArtyom();
+        });
+    });
+    var inputDOMElement;
+    var addButtonDOMElement;
+    var todosDOMElement;
+    var counterDOMElement;
+    var doneDOMElement;
+    var openDOMElement;
+    window.addEventListener("load", function () {
+        inputDOMElement = document.querySelector("#inputTodo");
+        addButtonDOMElement = document.querySelector("#addButton");
+        todosDOMElement = document.querySelector("#todos");
+        counterDOMElement = document.querySelector("#counter");
+        doneDOMElement = document.querySelector("#done");
+        openDOMElement = document.querySelector("#open");
+        addButtonDOMElement.addEventListener("click", addTodo);
+        drawListToDOM();
+    });
+    function drawListToDOM() {
+        todosDOMElement.innerHTML = "";
+        var _loop_1 = function (index_1) {
+            var todo = document.createElement("div");
+            todo.classList.add("todo");
+            todo.innerHTML = "<span class='check " + newArray[index_1].checked + "'><i class='fas fa-check'></i></span>"
+                + newArray[index_1].content +
+                "<span class='trash fas fa-trash-alt'></span>";
+            todo.querySelector(".check").addEventListener("click", function () {
+                toggleCheckState(index_1);
+            });
+            todo.querySelector(".trash").addEventListener("click", function () {
+                deleteTodo(index_1);
+            });
+            todosDOMElement.appendChild(todo);
+        };
+        for (var index_1 = 0; index_1 < newArray.length; index_1++) {
+            _loop_1(index_1);
+        }
+        updateCounter();
+        taskDone();
+        taskOpen();
+    }
+    function updateCounter() {
+        counterDOMElement.innerHTML = newArray.length + " in total";
+    }
+    function taskDone() {
+        var done = 0;
+        for (var index = 0; index < newArray.length; index++) {
+            if (newArray[index].checked == true)
+                done++;
+        }
+        doneDOMElement.innerHTML = done + " done";
+    }
+    function taskOpen() {
+        var open = 0;
+        for (var index = 0; index < newArray.length; index++) {
+            if (newArray[index].checked == false)
+                open++;
+        }
+        openDOMElement.innerHTML = open + " open";
+    }
+    function addTodo() {
+        if (inputDOMElement.value != "") {
+            newArray.unshift({
+                content: inputDOMElement.value,
+                checked: false
+            });
+            inputDOMElement.value = "";
+            drawListToDOM();
         }
     }
-    counterDOMElement.innerHTML = todos.tasks.length + " in total | " + open + " open | " + done + " done";
-}
-function addTodo() {
-    if (inputDOMElement.value != "") {
-        todos.tasks.push(inputDOMElement.value);
-        todos.status.push(false);
-        inputDOMElement.value = "";
+    function toggleCheckState(index) {
+        newArray[index].checked = !newArray[index].checked;
         drawListToDOM();
     }
-}
-function toggleCheckState(index) {
-    todos.status[index] = !todos.status[index];
-    drawListToDOM();
-}
-function deleteTodo(index) {
-    todos.tasks.splice(index, 1);
-    todos.status.splice(index, 1);
-    drawListToDOM();
-}
-function listen() {
-    Artyom.initialize({
-        lang: "de-DE",
-        continuous: false,
-        debug: true,
-        listen: true
-    });
-}
+    function deleteTodo(index) {
+        newArray.splice(index, 1);
+        drawListToDOM();
+    }
+})(aufgabe10 || (aufgabe10 = {}));
 //# sourceMappingURL=script.js.map
